@@ -1,3 +1,4 @@
+import 'package:aunthentication_without_password/connection_checker_demo.dart';
 import 'package:flutter/material.dart';
 import 'package:magic_sdk/magic_sdk.dart';
 import 'home.dart';
@@ -20,9 +21,8 @@ class MyApp extends StatelessWidget {
         primarySwatch: Colors.purple
       ),
       home: Stack(
-        children: [
-          Home(),
-          Magic.instance.relayer,
+        children: const [
+          ConnectionCheckerDemo(),
         ],
       ),
     );
