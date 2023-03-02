@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:magic_sdk/magic_sdk.dart';
 import 'home.dart';
 
 void main(){
   runApp(const MyApp());
+  Magic.instance = Magic("pk_live_1D0F14960042C879");
 }
 
 class MyApp extends StatelessWidget {
@@ -14,10 +16,15 @@ class MyApp extends StatelessWidget {
       title: 'Demo Authentication',
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
-        useMaterial3: true,
+        // useMaterial3: true,
         primarySwatch: Colors.purple
       ),
-      home: const Home(),
+      home: Stack(
+        children: [
+          Home(),
+          Magic.instance.relayer,
+        ],
+      ),
     );
   }
 }

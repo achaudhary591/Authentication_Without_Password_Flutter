@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:magic_sdk/magic_sdk.dart';
 import 'package:velocity_x/velocity_x.dart';
 
 class Home extends StatefulWidget {
@@ -10,6 +11,11 @@ class Home extends StatefulWidget {
 
 class _HomeState extends State<Home> {
   final TextEditingController controller = TextEditingController();
+
+  authenticate(BuildContext context) async{
+    final token = await Magic.instance.auth.loginWithMagicLink(email: controller.text);
+    print(token);
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -28,11 +34,13 @@ class _HomeState extends State<Home> {
                 hint: 'Enter em@il',
               ).p32(),
               ElevatedButton(
-                onPressed: () {},
+                onPressed: () {
+                  authenticate(context);
+                },
                 child: 'Login'.text.bold.make(),
-              ).p16().centered(),
+              ).wFourFifth(context),
             ],
-          ),
+          ).p16().centered(),
         ],
       ),
     );
